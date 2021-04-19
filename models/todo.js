@@ -9,6 +9,6 @@ function getAll() {
     return todos;
 }
 
-  function create(todo) {
+function create(todo) {
     todos.push(todo);
 }
