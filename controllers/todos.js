@@ -1,21 +1,23 @@
-const express = require("express");
-const router = express.Router();
-
 const Todo = require("../models/todo");
 
 module.exports = {
-    index,
-    create,
+ index,
+ create,
+ delete: deleteOne,
+};
+
+function index(req, res) {
+  res.render("index", {
+   todos: Todo.getAll(),
+ });
 }
 
-function index (req, res, next) {
-    res.render('/index', {
-    todos: Todo.getAll(),
-    });
-}
-
-function create (req, res) {
-    req.body.done = false; 
+function create(req, res){
     Todo.create(req.body);
-    res.redirect('/index');
+    res.redirect("/")
+}
+
+function deleteOne(req, res){
+  Todo.deleteOne(req.params.id);
+  res.redirect("/");
 }

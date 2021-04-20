@@ -1,14 +1,24 @@
 const todos = [];
 
 module.exports = {
-    getAll,
-    create,
+  getAll,
+  getOne,
+  create,
+  deleteOne,
 };
 
-function getAll() {
+function getAll(){
     return todos;
 }
 
-function create(todo) {
+function getOne(id) {
+    return todos[id];
+}
+
+function create(todo){
     todos.push(todo);
+}
+
+function deleteOne(id){
+    todos.splice(id, 1);
 }

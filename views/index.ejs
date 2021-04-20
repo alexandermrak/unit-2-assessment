@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Unit 2 Assesment</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>To Do List</h1>
-    <% if (todos.length) { %>
-    <ul>
-      <% todos.forEach(function(t) { %>
-        <li><%= t.todo %> - <%= t.done ? 'done' : 'not done' %></li>
-      <% }); %>
-    </ul>
-    <% } else { %>
-      <p>To Do List is currently Empty</p>
-      <% } %>
-    <br>
-    <form action="/todos" method="POST">
-      <input type="text" name="todo">
-      <input type="submit" value="Add Todo">
+  <h1>To-Do List</h1>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+        </tr>
+          </thead>
+          <tbody>
+            <% if(todos.length) { %>
+              <% todos.forEach(function(t, idx) { %>
+                <tr>
+                  <ul>
+                  <td>
+                    <li><%= t.todo %> - <%= t.done ? 'done' : 'Not done' %></li>
+                  </td>
+                  </ul>
+                  <td>
+                    <form action="/index/<%= idx %>?_method=DELETE" class="delete-form" method="POST">
+                    <button type="submit">DELETE</button></form>
+                  <% }) %>
+                  </td>
+                </tr>
+            <% } else { %>
+            <h3></h3>
+          <% } %>
+          </tbody>
+        </table>    
+      <hr>
+    <form action="/" method="POST" autocomplete="off">
+      <input type="text" name="todo" placeholder="Enter To-Do" required >
+      <button type="submit">ADD TO-DO</button>
     </form>
   </body>
 </html>

@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Unit 2 Assessment' });
-});
+const todosCtrl = require("../controllers/todos");
+
+/* GET users listing. */
+router.get('/', todosCtrl.index);
+router.post("/", todosCtrl.create);
+router.delete("/index/:id", todosCtrl.delete);
 
 module.exports = router;
